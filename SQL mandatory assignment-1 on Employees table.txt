@@ -1,0 +1,213 @@
+1.Write a query to find the salaries of all employees.
+
+A.select SALARY from employees;
+
+24000.00
+17000.00
+17000.00
+9000.00
+6000.00
+4800.00
+4800.00
+4200.00
+12000.00
+9000.00
+8200.00
+7700.00
+7800.00
+6900.00
+11000.00
+3100.00
+2900.00
+2800.00
+2600.00
+2500.00
+8000.00
+
+2.Write a SQL query to find the unique designations of the employees.Return JOB ID.
+A.select DISTINCT(JOB_ID)from employees;
+
+JOB_ID
+ST_MAN
+ST_CLERK
+SH_CLERK
+SA_REP
+SA_MAN
+PU_MAN
+PU_CLERK
+PR_REP
+MK_REP
+MK_MAN
+IT_PROG
+HR_REP
+FI_MGR
+FI_ACCOUNT
+AD_VP
+AD_PRES
+AD_ASST
+AC_MGR
+AC_ACCOUNT
+
+3. write a SQL query to list the employees’ name, increased their salary by 15%, and expressed as number of Dollars.
+A.select FIRST_NAME,(0.15*SALARY/76) AS SALARY from employees;
+
+FIRST_NAME, SALARY
+Steven	47.36842105
+Neena	33.55263158
+Lex	33.55263158
+Alexander	17.76315789
+Bruce	11.84210526
+David	9.47368421
+Valli	9.47368421
+Diana	8.28947368
+Nancy	23.68421053
+Daniel	17.76315789
+John	16.18421053
+ 
+4.Write a SQL query to list the employee's name and job name as a format of "Employee & JobID”.
+
+A.ALTER table temp1.employees add e_name varchar(50);
+UPDATE temp1.employees set e_name = concat(employees.FIRST_NAME,'',employees.LAST_NAME);
+
+
+# EMPLOYEE_ID	FIRST_NAME	LAST_NAME	EMAIL	PHONE_NUMBER	HIRE_DATE	JOB_ID	SALARY	COMMISSION_PCT	MANAGER_ID	DEPARTMENT_ID e_name
+100	Steven	King	SKING	515.123.4567	1987-06-17	AD_PRES	24000.00	0.00	0	90		Steven King	
+101	Neena	Kochhar	NKOCHHAR	515.123.4568	1987-06-18	AD_VP	17000.00	0.00	100	90		Neena Kochhar	
+102	Lex	De Haan	LDEHAAN	515.123.4569	1987-06-19	AD_VP	17000.00	0.00	100	90		Lex De Haan	
+103	Alexander	Hunold	AHUNOLD	590.423.4567	1987-06-20	IT_PROG	9000.00	0.00	102	60		Alexander Hunold	
+104	Bruce	Ernst	BERNST	590.423.4568	1987-06-21	IT_PROG	6000.00	0.00	103	60		Bruce Ernst	
+105	David	Austin	DAUSTIN	590.423.4569	1987-06-22	IT_PROG	4800.00	0.00	103	60		David Austin	
+106	Valli	Pataballa	VPATABAL	590.423.4560	1987-06-23	IT_PROG	4800.00	0.00	103	60		Valli Pataballa	
+107	Diana	Lorentz	DLORENTZ	590.423.5567	1987-06-24	IT_PROG	4200.00	0.00	103	60		Diana Lorentz	
+108	Nancy	Greenberg	NGREENBE	515.124.4569	1987-06-25	FI_MGR	12000.00	0.00	101	100		Nancy Greenberg	
+109	Daniel	Faviet	DFAVIET	515.124.4169	1987-06-26	FI_ACCOUNT	9000.00	0.00	108	100		Daniel Faviet
+110	John	Chen	JCHEN	515.124.4269	1987-06-27	FI_ACCOUNT	8200.00	0.00	108	100		John Chen	
+111	Ismael	Sciarra	ISCIARRA	515.124.4369	1987-06-28	FI_ACCOUNT	7700.00	0.00	108	100		Ismael Sciarra	
+
+select e_name,JOB_ID from employees;
+
+e_name, JOB_ID
+StevenKing	AD_PRES
+NeenaKochhar	AD_VP
+LexDe Haan	AD_VP
+AlexanderHunold	IT_PROG
+BruceErnst	IT_PROG
+DavidAustin	IT_PROG
+ValliPataballa	IT_PROG
+DianaLorentz	IT_PROG
+NancyGreenberg	FI_MGR
+DanielFaviet	FI_ACCOUNT
+JohnChen	FI_ACCOUNT
+
+5. Write a SQL query to find those employees with hire date in the format like February 22, 1991. Return employee ID, employee name, salary, hire date.
+A.select EMPLOYEE_ID,e_name,SALARY,date_format(HIRE_DATE,'%M %D,%Y') From employees;
+# EMPLOYEE_ID, e_name, SALARY, date_format(HIRE_DATE,'%M %D,%Y')
+100, StevenKing, 24000.00, June 17th,1987
+101	NeenaKochhar	17000.00	June 18th,1987
+102	LexDe Haan	17000.00	June 19th,1987
+103	AlexanderHunold	9000.00	June 20th,1987
+104	BruceErnst	6000.00	June 21st,1987
+105	DavidAustin	4800.00	June 22nd,1987
+106	ValliPataballa	4800.00	June 23rd,1987
+107	DianaLorentz	4200.00	June 24th,1987
+108	NancyGreenberg	12000.00	June 25th,1987
+
+6. Write a SQL query to count the number of characters except the spaces for each employee name. Return employee name length.
+A.select length((e_name))from employees;
+length((e_name))
+10
+12
+10
+15
+10
+11
+14
+12
+14
+12
+8
+13
+16
+8
+
+7.Write a SQL query to find the employee ID, salary, and commission of all the employees. 
+A.select EMPLOYEE_ID,SALARY,COMMISSION_PCT from employees;
+EMPLOYEE_ID, SALARY, COMMISSION_PCT
+100	24000.00	0.00
+101	17000.00	0.00
+102	17000.00	0.00
+103	9000.00	0.00
+104	6000.00	0.00
+105	4800.00	0.00
+106	4800.00	0.00
+107	4200.00	0.00
+108	12000.00	0.00
+109	9000.00	0.00
+110	8200.00	0.00
+111	7700.00	0.00
+112	7800.00	0.00
+113	6900.00	0.00
+114	11000.00	0.00
+115	3100.00	0.00
+116	2900.00	0.00
+117	2800.00	0.00
+118	2600.00	0.00
+119	2500.00	0.00
+120	8000.00	0.00
+121	8200.00	0.00
+122	7900.00	0.00
+123	6500.00	0.00
+124	5800.00	0.00
+125	3200.00	0.00
+126	2700.00	0.00
+127	2400.00	0.00
+
+8. Write a SQL query to find the unique department with jobs. Return department ID, Job Count. 
+A.select distinct (DEPARTMENT_ID),count(job_id)from employees;
+  DEPARTMENT_ID, count(job_id)
+  '90', '107'
+
+9. Write a SQL query to find those employees who joined before 1991. Return complete information about the employees.
+A.select * from employees where HIRE_DATE>1991;
+
+  EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID,e_name
+  100	Steven	King	SKING	515.123.4567	1987-06-17	AD_PRES	24000.00	0.00	0	90		Steven King	
+101	Neena	Kochhar	NKOCHHAR	515.123.4568	1987-06-18	AD_VP	17000.00	0.00	100	90		Neena Kochhar	
+102	Lex	De Haan	LDEHAAN	515.123.4569	1987-06-19	AD_VP	17000.00	0.00	100	90		Lex De Haan	
+103	Alexander	Hunold	AHUNOLD	590.423.4567	1987-06-20	IT_PROG	9000.00	0.00	102	60		Alexander Hunold	
+104	Bruce	Ernst	BERNST	590.423.4568	1987-06-21	IT_PROG	6000.00	0.00	103	60		Bruce Ernst	
+105	David	Austin	DAUSTIN	590.423.4569	1987-06-22	IT_PROG	4800.00	0.00	103	60		David Austin	
+106	Valli	Pataballa	VPATABAL	590.423.4560	1987-06-23	IT_PROG	4800.00	0.00	103	60		Valli Pataballa	
+107	Diana	Lorentz	DLORENTZ	590.423.5567	1987-06-24	IT_PROG	4200.00	0.00	103	60		Diana Lorentz	
+108	Nancy	Greenberg	NGREENBE	515.124.4569	1987-06-25	FI_MGR	12000.00	0.00	101	100		Nancy Greenberg	
+109	Daniel	Faviet	DFAVIET	515.124.4169	1987-06-26	FI_ACCOUNT	9000.00	0.00	108	100		Daniel Faviet
+
+10. Write a SQL query to compute the average salary of those employees who work as ‘Shipping Clerk’. Return average salary.
+A   select avg(SALARY)from employees where JOB_ID='SH_CLERK';
+     avg(SALARY)
+     '3215.000000'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
